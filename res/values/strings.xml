@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, GameScreen!</string>
+    <string name="app_name">BridgeScorer</string>
+<string name="east">EAST</string>
+</resources>

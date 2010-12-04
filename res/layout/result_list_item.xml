@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView android:text="@+id/TextView01" android:layout_width="fill_parent" android:layout_height="fill_parent" android:id="@+id/HandResultTextView" xmlns:android="http://schemas.android.com/apk/res/android" android:textSize="16px" android:minHeight="30px" android:typeface="monospace"></TextView>
+
