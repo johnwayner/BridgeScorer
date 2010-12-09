@@ -1,5 +1,7 @@
 package com.johnwayner.bridgescorer.model;
 
+import org.simpleframework.xml.Element;
+
 import com.johnwayner.bridgescorer.IMPTables;
 import com.johnwayner.bridgescorer.IMPTables.VULNERABILITY;
 
@@ -31,9 +33,17 @@ public class HandResult {
 			case SOUTH: return WEST;
 			default: return NORTH;
 			}
-
 		}
-
+		
+		public boolean isSamePartnership(PLAYER otherPlayer) {
+			switch(otherPlayer) {
+			case NORTH:
+			case SOUTH:
+				return (this == NORTH) || (this == SOUTH);
+			default:
+				return (this == EAST) || (this == WEST);			
+			}
+		}
 	}
 	
 	public enum SUIT {
@@ -75,13 +85,21 @@ public class HandResult {
 		}
 	}
 	
+	@Element
 	public SUIT suit;
+	@Element
 	public PLAYER player;
+	@Element
 	public int level;
+	@Element
 	public int multiplier = 1;
+	@Element
 	public VULNERABILITY vulnerability;
+	@Element
 	public int hcp; //playing partnership's high card points (A=4,K=3,Q=2,J=1)
+	@Element
 	public int tricksMade;
+	@Element
 	public int handNumber;
 	
 	public HandResult(PLAYER player, SUIT suit, int level, int multiplier, VULNERABILITY vulnerability, int hcp, int tricksMade, int handNumber)

@@ -1,8 +1,5 @@
 package com.johnwayner.bridgescorer;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -19,10 +16,12 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.johnwayner.bridgescorer.IMPTables.VULNERABILITY;
+import com.johnwayner.bridgescorer.model.Game;
 import com.johnwayner.bridgescorer.model.HandResult;
 import com.johnwayner.bridgescorer.model.HandResult.PLAYER;
 import com.johnwayner.bridgescorer.model.HandResult.SUIT;
 import com.johnwayner.bridgescorer.utils.EditNumberText;
+import com.johnwayner.bridgescorer.utils.GameManager;
 import com.johnwayner.bridgescorer.utils.ToggleButtonGroup;
 
 public class GameScreen extends Activity {
@@ -40,8 +39,6 @@ public class GameScreen extends Activity {
 		
 	};
 	
-	private static List<HandResult> history = new ArrayList<HandResult>();
-	
 	//ToggleGroups
 	private ToggleButtonGroup<PLAYER> contractPlayer;
 	private ToggleButtonGroup<SUIT> contractSuit;
@@ -50,12 +47,8 @@ public class GameScreen extends Activity {
 	private ToggleButtonGroup<Integer> tricksMadeQuick;
 	private EditNumberText hcp;
 	private EditNumberText tricksTaken;
-	
-	//Game level values
-	private int NSScore = 0;
-	private int EWScore = 0;
-	private PLAYER currentDealer = PLAYER.NORTH;
-	private int handNumber = 1;
+
+	private Game currentGame = new Game();
 	
     /** Called when the activity is first created. */
     @Override
@@ -138,10 +131,10 @@ public class GameScreen extends Activity {
 						contractSuit.getSelectedValue(), 
 						contractLevel.getSelectedValue(), 
 						contractMultiplier.getSelectedValue(), 
-						VULNERABILITY.VULNERABLE, 
+						currentGame.getVulnerability(contractPlayer.getSelectedValue()), 
 						hcp.getValue(false), 
 						getTricksMade(),
-						handNumber);
+						currentGame.getHandNumber());
 				updateHistoryList(result);
 				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 				imm.hideSoftInputFromWindow(pointsView.findViewById(R.id.PointsOKButton).getWindowToken(), 0);
@@ -151,25 +144,25 @@ public class GameScreen extends Activity {
 					case NORTH:
 					case SOUTH:
 						if(impScore>0) {
-							NSScore += impScore;
+							currentGame.increaseNSScore(impScore);
 						} else {
-							EWScore -= impScore;
+							currentGame.increaseEWScore(Math.abs(impScore));
 						}
 						
 						break;
 					case EAST:
 					case WEST:
 						if(impScore>0) {
-							EWScore += impScore;
+							currentGame.increaseEWScore(impScore);
 						} else {
-							NSScore -= impScore;
+							currentGame.increaseNSScore(Math.abs(impScore));
 						}
 						break;
 				}
 				
 				//Update score board
-				((TextView)GameScreen.this.findViewById(R.id.NSScore)).setText(Integer.toString(NSScore));
-				((TextView)GameScreen.this.findViewById(R.id.EWScore)).setText(Integer.toString(EWScore));
+				((TextView)GameScreen.this.findViewById(R.id.NSScore)).setText(Integer.toString(currentGame.getNSScore()));
+				((TextView)GameScreen.this.findViewById(R.id.EWScore)).setText(Integer.toString(currentGame.getEWScore()));
 				
 				//Clear all toggles and inputs.
 				contractPlayer.reset();
@@ -181,12 +174,23 @@ public class GameScreen extends Activity {
 				tricksTaken.reset();
 				
 				advanceDealerAndUpdateIndicator();
-				advanceHandCountAndUpdateIndicator();
+				((TextView)GameScreen.this.findViewById(
+						R.id.HandCountLabel)).setText(
+								"("+Integer.toString(currentGame.getHandNumber())+")");
 				
 				
 				contractView.setVisibility(View.VISIBLE);
 				pointsView.setVisibility(View.GONE);			
 				resultView.setVisibility(View.GONE);
+				
+				try {
+					GameManager.saveGame(GameScreen.this, currentGame);
+					currentGame = GameManager.loadGame(
+							GameManager.getFilename(
+								GameScreen.this, currentGame));
+				} catch (Exception e) {
+					Toast.makeText(GameScreen.this, e.toString(), Toast.LENGTH_LONG).show();
+				}
 			}
 		});
         
@@ -209,9 +213,9 @@ public class GameScreen extends Activity {
     	w.setBackgroundResource(android.R.color.white);
     	s.setBackgroundResource(android.R.color.white);
     	
-    	currentDealer = currentDealer.getNextDealer();
+    	currentGame.setNextDealer();
     	
-    	switch(currentDealer)
+    	switch(currentGame.getCurrentDealer())
     	{
     	case NORTH: n.setBackgroundColor(0xFFFF0000); break;
     	case EAST: e.setBackgroundColor(0xFFFF0000); break;
@@ -219,21 +223,16 @@ public class GameScreen extends Activity {
     	case WEST: w.setBackgroundColor(0xFFFF0000); break;
     	}
     }
-    
-    private void advanceHandCountAndUpdateIndicator()
-    {
-    	handNumber++;
-    	((TextView)this.findViewById(R.id.HandCountLabel)).setText("("+Integer.toString(handNumber)+")");
-    }
+
     
     private void updateHistoryList(HandResult newResult)
     {
     	if(null != newResult)
     	{
-    		history.add(newResult);
+    		currentGame.addHandResult(newResult);
     	}
         ListView handListView = (ListView)this.findViewById(R.id.HistoryListView);
-        handListView.setAdapter(new ArrayAdapter<HandResult>(this, R.layout.result_list_item, history));
+        handListView.setAdapter(new ArrayAdapter<HandResult>(this, R.layout.result_list_item, currentGame.getHandResults()));
     }
     
     private void updateHistoryList()
