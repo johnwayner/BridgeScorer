@@ -3,4 +3,5 @@
     <string name="hello">Hello World, GameScreen!</string>
     <string name="app_name">BridgeScorer</string>
 <string name="east">EAST</string>
+<string name="chooser_instructions">Manage or play existing games</string>
 </resources>

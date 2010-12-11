@@ -102,6 +102,72 @@ public class HandResult {
 	@Element
 	public int handNumber;
 	
+	
+	
+	public SUIT getSuit() {
+		return suit;
+	}
+
+	public void setSuit(SUIT suit) {
+		this.suit = suit;
+	}
+
+	public PLAYER getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(PLAYER player) {
+		this.player = player;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public int getMultiplier() {
+		return multiplier;
+	}
+
+	public void setMultiplier(int multiplier) {
+		this.multiplier = multiplier;
+	}
+
+	public VULNERABILITY getVulnerability() {
+		return vulnerability;
+	}
+
+	public void setVulnerability(VULNERABILITY vulnerability) {
+		this.vulnerability = vulnerability;
+	}
+
+	public int getHcp() {
+		return hcp;
+	}
+
+	public void setHcp(int hcp) {
+		this.hcp = hcp;
+	}
+
+	public int getTricksMade() {
+		return tricksMade;
+	}
+
+	public void setTricksMade(int tricksMade) {
+		this.tricksMade = tricksMade;
+	}
+
+	public int getHandNumber() {
+		return handNumber;
+	}
+
+	public void setHandNumber(int handNumber) {
+		this.handNumber = handNumber;
+	}
+
 	public HandResult(PLAYER player, SUIT suit, int level, int multiplier, VULNERABILITY vulnerability, int hcp, int tricksMade, int handNumber)
 	{
 		this.suit = suit;
@@ -114,6 +180,13 @@ public class HandResult {
 		this.handNumber = handNumber;
 	}
 	
+	
+	
+	public HandResult() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public String toString()
 	{
 		int overUnders = (tricksMade-(6+level));

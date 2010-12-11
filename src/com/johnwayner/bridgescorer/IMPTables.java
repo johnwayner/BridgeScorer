@@ -67,7 +67,7 @@ public class IMPTables {
 	{
 		int index = hcp - 20;
 
-		return (index < 0)?-1:1 * IMPHCPTargets[Math.abs(index)][vulnerability.index];		
+		return ((index < 0)?-1:1) * IMPHCPTargets[Math.abs(index)][vulnerability.index];		
 	}
 	
 	static public int getIMPScore(int actualScore, int targetScore)

@@ -3,6 +3,7 @@ package com.johnwayner.bridgescorer;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -25,6 +26,8 @@ import com.johnwayner.bridgescorer.utils.GameManager;
 import com.johnwayner.bridgescorer.utils.ToggleButtonGroup;
 
 public class GameScreen extends Activity {
+	
+	public static final String SHOW_GAME_ACTIVITY_NAME = "com.johnwayner.bridgescorer.GameScreen.SHOW_GAME";
 	
 	static final HandResult[] TEST_HANDS = new HandResult[] {
 		new HandResult(PLAYER.NORTH, SUIT.HEARTS, 2, 1, VULNERABILITY.VULNERABLE, 23, 8, 1),
@@ -55,6 +58,17 @@ public class GameScreen extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        //if we are resuming an existing game...load it
+        if(null != getIntent().getData()) {
+        	try {
+				currentGame = GameManager.loadGame(getIntent().getData());
+			} catch (Exception e) {
+				Log.e("BridgeScorer", "GameScreen: Unable to load existing game: " + getIntent().getData().toString(), e);
+				Toast.makeText(this, "Unable to load game!", Toast.LENGTH_LONG);
+				finish();
+			}
+        }
         
         final Window thisWindow = this.getWindow();        
         final View contractView = this.findViewById(R.id.ContractLayout);
@@ -160,34 +174,10 @@ public class GameScreen extends Activity {
 						break;
 				}
 				
-				//Update score board
-				((TextView)GameScreen.this.findViewById(R.id.NSScore)).setText(Integer.toString(currentGame.getNSScore()));
-				((TextView)GameScreen.this.findViewById(R.id.EWScore)).setText(Integer.toString(currentGame.getEWScore()));
-				
-				//Clear all toggles and inputs.
-				contractPlayer.reset();
-				contractSuit.reset();
-				contractLevel.reset();
-				contractMultiplier.reset();
-				hcp.reset();
-				tricksMadeQuick.reset();
-				tricksTaken.reset();
-				
-				advanceDealerAndUpdateIndicator();
-				((TextView)GameScreen.this.findViewById(
-						R.id.HandCountLabel)).setText(
-								"("+Integer.toString(currentGame.getHandNumber())+")");
-				
-				
-				contractView.setVisibility(View.VISIBLE);
-				pointsView.setVisibility(View.GONE);			
-				resultView.setVisibility(View.GONE);
+				initializeUIElements();
 				
 				try {
 					GameManager.saveGame(GameScreen.this, currentGame);
-					currentGame = GameManager.loadGame(
-							GameManager.getFilename(
-								GameScreen.this, currentGame));
 				} catch (Exception e) {
 					Toast.makeText(GameScreen.this, e.toString(), Toast.LENGTH_LONG).show();
 				}
@@ -199,6 +189,40 @@ public class GameScreen extends Activity {
         tricksTaken = new EditNumberText((EditText)this.findViewById(R.id.TricksTakenEditText), "Tricks taken", 0, 13);
         
         updateHistoryList();
+    }
+    
+    @Override
+    protected void onResume() {
+    	super.onRestart();
+    	initializeUIElements();
+    }
+    
+    private void initializeUIElements() {
+		//Update score board
+		((TextView)GameScreen.this.findViewById(R.id.NSScore)).setText(Integer.toString(currentGame.getNSScore()));
+		((TextView)GameScreen.this.findViewById(R.id.EWScore)).setText(Integer.toString(currentGame.getEWScore()));
+		
+		//Clear all toggles and inputs.
+		contractPlayer.reset();
+		contractSuit.reset();
+		contractLevel.reset();
+		contractMultiplier.reset();
+		hcp.reset();
+		tricksMadeQuick.reset();
+		tricksTaken.reset();
+		
+		advanceDealerAndUpdateIndicator();
+		((TextView)GameScreen.this.findViewById(
+				R.id.HandCountLabel)).setText(
+						"("+Integer.toString(currentGame.getHandNumber())+")");
+		
+        final View contractView = this.findViewById(R.id.ContractLayout);
+        final View pointsView = this.findViewById(R.id.PointsLayout);
+        final View resultView = this.findViewById(R.id.ResultLayout);
+        
+		contractView.setVisibility(View.VISIBLE);
+		pointsView.setVisibility(View.GONE);			
+		resultView.setVisibility(View.GONE);
     }
     
     private void advanceDealerAndUpdateIndicator()
