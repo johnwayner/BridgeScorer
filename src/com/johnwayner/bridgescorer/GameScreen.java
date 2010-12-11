@@ -174,6 +174,7 @@ public class GameScreen extends Activity {
 						break;
 				}
 				
+				currentGame.setNextDealer();
 				initializeUIElements();
 				
 				try {
@@ -211,7 +212,6 @@ public class GameScreen extends Activity {
 		tricksMadeQuick.reset();
 		tricksTaken.reset();
 		
-		advanceDealerAndUpdateIndicator();
 		((TextView)GameScreen.this.findViewById(
 				R.id.HandCountLabel)).setText(
 						"("+Integer.toString(currentGame.getHandNumber())+")");
@@ -223,9 +223,11 @@ public class GameScreen extends Activity {
 		contractView.setVisibility(View.VISIBLE);
 		pointsView.setVisibility(View.GONE);			
 		resultView.setVisibility(View.GONE);
+		
+		updateDealerIndicator();
     }
     
-    private void advanceDealerAndUpdateIndicator()
+    private void updateDealerIndicator()
     {
     	TextView n = (TextView)this.findViewById(R.id.North);
     	TextView e = (TextView)this.findViewById(R.id.East);
@@ -236,8 +238,6 @@ public class GameScreen extends Activity {
     	e.setBackgroundResource(android.R.color.white);
     	w.setBackgroundResource(android.R.color.white);
     	s.setBackgroundResource(android.R.color.white);
-    	
-    	currentGame.setNextDealer();
     	
     	switch(currentGame.getCurrentDealer())
     	{

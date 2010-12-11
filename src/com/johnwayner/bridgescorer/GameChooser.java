@@ -84,6 +84,7 @@ public class GameChooser extends ListActivity {
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
+
 	  final AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 	  switch (item.getItemId()) {
 	  case R.id.PlayMenuItem:
