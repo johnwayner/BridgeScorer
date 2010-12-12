@@ -25,7 +25,7 @@ public class HandResult {
 		}
 
 		public static PLAYER getDealerForHand(int handNumber) {
-			switch(handNumber%4) {
+			switch((handNumber-1)%4) {
 			case 0: return NORTH;
 			case 1: return EAST;
 			case 2: return SOUTH;

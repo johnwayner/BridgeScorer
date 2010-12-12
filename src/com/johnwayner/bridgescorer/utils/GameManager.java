@@ -48,6 +48,7 @@ public class GameManager {
 			return IOUtils.toString(reader);
 		} catch (IOException e) {
 			Log.w("BridgeScorer", "GameManager.loadGameXML: unable to load xml data", e);
+			Toast.makeText(context, "Unable to load file.  It may be corrupted.", Toast.LENGTH_LONG);
 		}
 		
 		return null;

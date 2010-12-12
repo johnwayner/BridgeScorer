@@ -15,13 +15,6 @@ import com.johnwayner.bridgescorer.model.HandResult.PLAYER;
 public class Game {
 	@Element
 	private Date startDate = new Date();
-//	@Element
-//	private int NSScore = 0;
-//	@Element
-//	private int EWScore = 0;
-	@Element
-	private PLAYER currentDealer = PLAYER.NORTH;
-//	private int handNumber = 1;
 	@ElementList
 	private List<HandResult> handResults = new ArrayList<HandResult>();
 	
@@ -43,12 +36,6 @@ public class Game {
 		}
 		return score;
 	}
-//	public void setNSScore(int nSScore) {
-//		NSScore = nSScore;
-//	}
-//	public void increaseNSScore(int additionalScore) {
-//		NSScore += additionalScore;
-//	}
 	public int getEWScore() {
 		int score = 0;
 		for(HandResult result : handResults) {
@@ -64,20 +51,8 @@ public class Game {
 		}
 		return score;
 	}
-//	public void setEWScore(int eWScore) {
-//		EWScore = eWScore;
-//	}
-//	public void increaseEWScore(int additionalScore) {
-//		EWScore += additionalScore;
-//	}
 	public PLAYER getCurrentDealer() {
-		return currentDealer;
-	}
-	public void setCurrentDealer(PLAYER currentDealer) {
-		this.currentDealer = currentDealer;
-	}
-	public void setNextDealer() {
-		currentDealer = currentDealer.getNextDealer();
+		return PLAYER.getDealerForHand(getHandNumber());
 	}
 	public int getHandNumber() {
 		return handResults.size() + 1;
@@ -98,6 +73,9 @@ public class Game {
 			}
 		}
 		throw new IllegalArgumentException("No such hand found.");
+	}
+	public void removeLastResult() {
+		handResults.remove(handResults.size()-1);
 	}
 	public static VULNERABILITY getVulnerability(int handNumber, PLAYER biddingPlayer) {
 		PLAYER dealer = PLAYER.getDealerForHand(handNumber);

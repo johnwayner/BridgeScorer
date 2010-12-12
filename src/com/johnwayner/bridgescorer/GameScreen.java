@@ -1,10 +1,13 @@
 package com.johnwayner.bridgescorer;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -76,7 +79,7 @@ public class GameScreen extends Activity {
 				currentGame = GameManager.loadGame(getIntent().getData());
 			} catch (Exception e) {
 				Log.e("BridgeScorer", "GameScreen: Unable to load existing game: " + getIntent().getData().toString(), e);
-				Toast.makeText(this, "Unable to load game!", Toast.LENGTH_LONG);
+				Toast.makeText(this, "Unable to load game!", Toast.LENGTH_LONG).show();
 				finish();
 			}
         }
@@ -168,8 +171,6 @@ public class GameScreen extends Activity {
 					InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 					imm.hideSoftInputFromWindow(pointsView.findViewById(R.id.PointsOKButton).getWindowToken(), 0);
 					
-					currentGame.setNextDealer();
-					
 				} else {
 					//This was an edit.
 					resultToEdit.player = contractPlayer.getSelectedValue();
@@ -222,6 +223,38 @@ public class GameScreen extends Activity {
         tricksTaken = new EditNumberText((EditText)this.findViewById(R.id.TricksTakenEditText), "Tricks taken", 0, 13);
         
         updateHistoryList();
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	MenuInflater inflater = new MenuInflater(this);
+    	inflater.inflate(R.menu.game_screen_options, menu);
+    	return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	switch(item.getItemId()) {
+    	case R.id.GameScreenMenuItem_RemoveLastHand:
+    		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    		builder.setMessage("Are you sure you want to remove the last hand?")
+    		       .setCancelable(false)
+    		       .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+    		           public void onClick(DialogInterface dialog, int id) {
+    		                currentGame.removeLastResult();
+    		                initializeUIElements();
+    		           }
+    		       })
+    		       .setNegativeButton("No", new DialogInterface.OnClickListener() {
+    		           public void onClick(DialogInterface dialog, int id) {
+    		                dialog.cancel();
+    		           }
+    		       });
+    		builder.create().show();
+    		return true;
+    	default:
+    		return super.onOptionsItemSelected(item);
+    	}
     }
     
     @Override
