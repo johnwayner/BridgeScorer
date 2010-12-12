@@ -252,6 +252,12 @@ public class GameScreen extends Activity {
     		       });
     		builder.create().show();
     		return true;
+    		
+    	case R.id.GameScreenMenuItem_NewGame:
+    		currentGame = new Game();
+    		initializeUIElements();
+    		Toast.makeText(GameScreen.this, "Previous game saved.  New game loaded.", Toast.LENGTH_LONG).show();
+    		return true;
     	default:
     		return super.onOptionsItemSelected(item);
     	}
@@ -319,6 +325,7 @@ public class GameScreen extends Activity {
 		resultView.setVisibility(View.GONE);
 		
 		updateDealerIndicator();
+		updateHistoryList();
     }
     
     private void updateDealerIndicator()
