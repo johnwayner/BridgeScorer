@@ -1,20 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content">
-<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:id="@+id/ContractLabel" android:text="W 2HXX" android:textSize="24px"></TextView>
-<ToggleButton android:layout_below="@+id/ResultOKButton" android:layout_width="wrap_content" android:text="@+id/ToggleButton01" android:layout_height="wrap_content" android:id="@+id/Minus2Toggle" android:textOff="-2" android:textOn="-2" android:layout_toRightOf="@+id/Minus3Toggle" android:layout_alignParentLeft="true"></ToggleButton>
-
-<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/ResultBackButton" android:text="Back" android:layout_toLeftOf="@id/ResultOKButton" android:layout_marginRight="40px"></Button><Button android:layout_height="wrap_content" android:id="@+id/ResultOKButton" android:text="OK" android:layout_alignParentTop="true" android:layout_alignParentRight="true" android:layout_width="140px"></Button>
-
-<ToggleButton android:layout_toRightOf="@+id/Minus2Toggle" android:layout_below="@+id/ResultOKButton" android:layout_width="wrap_content" android:text="@+id/ToggleButton01" android:layout_height="wrap_content" android:id="@+id/Minus1Toggle" android:textOff="-1" android:textOn="-1"></ToggleButton>
-<ToggleButton android:layout_toRightOf="@+id/Minus1Toggle" android:layout_below="@+id/ResultOKButton" android:layout_width="wrap_content" android:text="@+id/ToggleButton01" android:layout_height="wrap_content" android:textOff="+0" android:textOn="+0" android:id="@+id/Plus0Toggle"></ToggleButton>
-<TextView android:layout_toRightOf="@+id/Minus1Toggle" android:layout_below="@+id/Plus0Toggle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="- OR -" android:layout_centerHorizontal="true" android:id="@+id/OR"></TextView><TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@+id/OR" android:id="@+id/TricksTakenLabel" android:text="Tricks Taken:"></TextView><EditText android:layout_toRightOf="@+id/TricksTakenLabel" android:layout_below="@+id/OR" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/TricksTakenEditText" android:inputType="phone"></EditText><ToggleButton android:layout_toRightOf="@+id/Plus0Toggle" android:layout_below="@+id/ResultOKButton" android:layout_width="wrap_content" android:text="@+id/ToggleButton01" android:layout_height="wrap_content" android:id="@+id/Plus1Toggle" android:textOff="+1" android:textOn="+1"></ToggleButton>
-<ToggleButton android:layout_toRightOf="@+id/Plus1Toggle" android:layout_below="@+id/ResultOKButton" android:layout_width="wrap_content" android:text="@+id/ToggleButton01" android:layout_height="wrap_content" android:textOff="+2" android:textOn="+2" android:id="@+id/Plus2Toggle"></ToggleButton>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content">
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true" android:id="@+id/ContractLabel"
+		android:text="W 2HXX" android:textSize="24px"></TextView>
+	<ToggleButton android:layout_width="wrap_content"
+		android:text="@+id/ToggleButton01" android:layout_height="wrap_content"
+		android:id="@+id/Minus2Toggle" android:textOff="-2" android:textOn="-2"
+		android:layout_toRightOf="@+id/Minus3Toggle"
+		android:layout_alignParentLeft="true" android:layout_below="@+id/ContractLabel"></ToggleButton>
 
 
 
 
+	<ToggleButton android:layout_toRightOf="@+id/Minus2Toggle"
+		android:layout_width="wrap_content" android:text="@+id/ToggleButton01"
+		android:layout_height="wrap_content" android:id="@+id/Minus1Toggle"
+		android:textOff="-1" android:textOn="-1" android:layout_below="@+id/ContractLabel"></ToggleButton>
+	<ToggleButton android:layout_toRightOf="@+id/Minus1Toggle"
+		android:layout_width="wrap_content" android:text="@+id/ToggleButton01"
+		android:layout_height="wrap_content" android:textOff="+0"
+		android:textOn="+0" android:id="@+id/Plus0Toggle"
+		android:layout_below="@+id/ContractLabel"></ToggleButton>
+	<TextView android:layout_toRightOf="@+id/Minus1Toggle"
+		android:layout_below="@+id/Plus0Toggle" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="- OR -"
+		android:layout_centerHorizontal="true" android:id="@+id/OR"></TextView>
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_below="@+id/OR"
+		android:id="@+id/TricksTakenLabel" android:text="Tricks Taken:"></TextView>
+	<EditText android:layout_toRightOf="@+id/TricksTakenLabel"
+		android:layout_below="@+id/OR" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/TricksTakenEditText"
+		android:inputType="phone"></EditText>
+	<ToggleButton android:layout_toRightOf="@+id/Plus0Toggle"
+		android:layout_width="wrap_content" android:text="@+id/ToggleButton01"
+		android:layout_height="wrap_content" android:id="@+id/Plus1Toggle"
+		android:textOff="+1" android:textOn="+1" android:layout_below="@+id/ContractLabel"></ToggleButton>
+	<ToggleButton android:layout_toRightOf="@+id/Plus1Toggle"
+		android:layout_width="wrap_content" android:text="@+id/ToggleButton01"
+		android:layout_height="wrap_content" android:textOff="+2"
+		android:textOn="+2" android:id="@+id/Plus2Toggle"
+		android:layout_below="@+id/ContractLabel"></ToggleButton>
+
+<Button android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/ResultBackButton"
+		android:text="Back" android:layout_toRightOf="@id/TricksTakenEditText"
+		android:layout_marginRight="40px" android:layout_alignTop="@id/TricksTakenEditText"></Button>
+
+	<Button android:layout_height="wrap_content" android:id="@+id/ResultOKButton"
+		android:text="OK" android:layout_width="140px"
+		android:layout_toRightOf="@+id/ResultBackButton"
+		android:layout_alignTop="@id/TricksTakenEditText" android:layout_alignParentRight="true"></Button>
+	
 
 </RelativeLayout>

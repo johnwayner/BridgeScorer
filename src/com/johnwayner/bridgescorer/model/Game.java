@@ -15,10 +15,10 @@ import com.johnwayner.bridgescorer.model.HandResult.PLAYER;
 public class Game {
 	@Element
 	private Date startDate = new Date();
-	@Element
-	private int NSScore = 0;
-	@Element
-	private int EWScore = 0;
+//	@Element
+//	private int NSScore = 0;
+//	@Element
+//	private int EWScore = 0;
 	@Element
 	private PLAYER currentDealer = PLAYER.NORTH;
 //	private int handNumber = 1;
@@ -29,23 +29,47 @@ public class Game {
 		return startDate;
 	}
 	public int getNSScore() {
-		return NSScore;
+		int score = 0;
+		for(HandResult result : handResults) {
+			int impScore = result.getIMPScore();
+			if(((result.player.isSamePartnership(PLAYER.NORTH)) &&
+			   (impScore > 0)) 
+				||
+			   ((result.player.isSamePartnership(PLAYER.EAST)) &&
+			   (impScore < 0))) {
+				
+				score += Math.abs(impScore);
+			}
+		}
+		return score;
 	}
-	public void setNSScore(int nSScore) {
-		NSScore = nSScore;
-	}
-	public void increaseNSScore(int additionalScore) {
-		NSScore += additionalScore;
-	}
+//	public void setNSScore(int nSScore) {
+//		NSScore = nSScore;
+//	}
+//	public void increaseNSScore(int additionalScore) {
+//		NSScore += additionalScore;
+//	}
 	public int getEWScore() {
-		return EWScore;
+		int score = 0;
+		for(HandResult result : handResults) {
+			int impScore = result.getIMPScore();
+			if(((result.player.isSamePartnership(PLAYER.EAST)) &&
+			   (impScore > 0)) 
+				||
+			   ((result.player.isSamePartnership(PLAYER.NORTH)) &&
+			   (impScore < 0))) {
+				
+				score += Math.abs(impScore);
+			}
+		}
+		return score;
 	}
-	public void setEWScore(int eWScore) {
-		EWScore = eWScore;
-	}
-	public void increaseEWScore(int additionalScore) {
-		EWScore += additionalScore;
-	}
+//	public void setEWScore(int eWScore) {
+//		EWScore = eWScore;
+//	}
+//	public void increaseEWScore(int additionalScore) {
+//		EWScore += additionalScore;
+//	}
 	public PLAYER getCurrentDealer() {
 		return currentDealer;
 	}
@@ -75,13 +99,15 @@ public class Game {
 		}
 		throw new IllegalArgumentException("No such hand found.");
 	}
-	public VULNERABILITY getVulnerability(PLAYER biddingPlayer) {
-		switch(currentDealer) {
+	public static VULNERABILITY getVulnerability(int handNumber, PLAYER biddingPlayer) {
+		PLAYER dealer = PLAYER.getDealerForHand(handNumber);
+		
+		switch(dealer) {
 		case NORTH:
 			return VULNERABILITY.NOT_VULNERABLE;
 		case EAST:
 		case SOUTH:
-			return biddingPlayer.isSamePartnership(currentDealer)?
+			return biddingPlayer.isSamePartnership(dealer)?
 					VULNERABILITY.VULNERABLE:
 					VULNERABILITY.NOT_VULNERABLE;
 		case WEST:
@@ -89,6 +115,9 @@ public class Game {
 		}
 		
 		throw new IllegalArgumentException("Unknown player position");
+	}
+	public VULNERABILITY getVulnerability(PLAYER biddingPlayer) {
+		return getVulnerability(getHandNumber(), biddingPlayer);
 	}
 	public Game() {
 	}

@@ -4,17 +4,24 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.johnwayner.bridgescorer.IMPTables.VULNERABILITY;
 import com.johnwayner.bridgescorer.model.Game;
@@ -28,6 +35,8 @@ import com.johnwayner.bridgescorer.utils.ToggleButtonGroup;
 public class GameScreen extends Activity {
 	
 	public static final String SHOW_GAME_ACTIVITY_NAME = "com.johnwayner.bridgescorer.GameScreen.SHOW_GAME";
+	
+	public static final int EDIT_RESULT_DIALOG = 1;
 	
 	static final HandResult[] TEST_HANDS = new HandResult[] {
 		new HandResult(PLAYER.NORTH, SUIT.HEARTS, 2, 1, VULNERABILITY.VULNERABLE, 23, 8, 1),
@@ -52,6 +61,8 @@ public class GameScreen extends Activity {
 	private EditNumberText tricksTaken;
 
 	private Game currentGame = new Game();
+	
+	private HandResult resultToEdit = null;
 	
     /** Called when the activity is first created. */
     @Override
@@ -140,43 +151,41 @@ public class GameScreen extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				HandResult result = new HandResult(
-						contractPlayer.getSelectedValue(), 
-						contractSuit.getSelectedValue(), 
-						contractLevel.getSelectedValue(), 
-						contractMultiplier.getSelectedValue(), 
-						currentGame.getVulnerability(contractPlayer.getSelectedValue()), 
-						hcp.getValue(false), 
-						getTricksMade(),
-						currentGame.getHandNumber());
-				updateHistoryList(result);
-				InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-				imm.hideSoftInputFromWindow(pointsView.findViewById(R.id.PointsOKButton).getWindowToken(), 0);
 				
-				int impScore = result.getIMPScore();
-				switch(result.player) {
-					case NORTH:
-					case SOUTH:
-						if(impScore>0) {
-							currentGame.increaseNSScore(impScore);
-						} else {
-							currentGame.increaseEWScore(Math.abs(impScore));
-						}
-						
-						break;
-					case EAST:
-					case WEST:
-						if(impScore>0) {
-							currentGame.increaseEWScore(impScore);
-						} else {
-							currentGame.increaseNSScore(Math.abs(impScore));
-						}
-						break;
+				if(null == resultToEdit) {
+					HandResult result = new HandResult(
+							contractPlayer.getSelectedValue(), 
+							contractSuit.getSelectedValue(), 
+							contractLevel.getSelectedValue(), 
+							contractMultiplier.getSelectedValue(), 
+							currentGame.getVulnerability(contractPlayer.getSelectedValue()), 
+							hcp.getValue(false), 
+							getTricksMade(),
+							currentGame.getHandNumber());
+					
+					currentGame.addHandResult(result);
+					
+					InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+					imm.hideSoftInputFromWindow(pointsView.findViewById(R.id.PointsOKButton).getWindowToken(), 0);
+					
+					currentGame.setNextDealer();
+					
+				} else {
+					//This was an edit.
+					resultToEdit.player = contractPlayer.getSelectedValue();
+					resultToEdit.suit = contractSuit.getSelectedValue();
+					resultToEdit.level = contractLevel.getSelectedValue();
+					resultToEdit.multiplier = contractMultiplier.getSelectedValue();
+					resultToEdit.vulnerability = Game.getVulnerability(resultToEdit.handNumber, resultToEdit.player);
+					resultToEdit.hcp = hcp.getValue(false);
+					resultToEdit.tricksMade = getTricksMade();
+					
+					GameScreen.this.findViewById(R.id.EditCancelButton).setVisibility(View.GONE);
+					resultToEdit = null;
 				}
 				
-				currentGame.setNextDealer();
+				updateHistoryList();
 				initializeUIElements();
-				
 				try {
 					GameManager.saveGame(GameScreen.this, currentGame);
 				} catch (Exception e) {
@@ -185,11 +194,63 @@ public class GameScreen extends Activity {
 			}
 		});
         
+        this.findViewById(R.id.EditCancelButton).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//Cancel the current edit
+				resultToEdit = null;
+				initializeUIElements();
+				v.setVisibility(View.GONE);
+			}
+		});
+        
+        ((ListView)this.findViewById(R.id.HistoryListView)).setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				editResult(position);
+			}
+		});
+
+        
+        registerForContextMenu(this.findViewById(R.id.HistoryListView));
+        
+        
         setupToggleGroups();
         hcp = new EditNumberText((EditText)this.findViewById(R.id.PartnershipPointsEditText), "Points", 0, 40);
         tricksTaken = new EditNumberText((EditText)this.findViewById(R.id.TricksTakenEditText), "Tricks taken", 0, 13);
         
         updateHistoryList();
+    }
+    
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenuInfo menuInfo) {
+      super.onCreateContextMenu(menu, v, menuInfo);
+      if(v.getId() == R.id.HistoryListView) {
+    	  MenuInflater inflater = getMenuInflater();
+    	  inflater.inflate(R.menu.result_context, menu);
+      }
+    }
+    
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+    	AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+    	switch(item.getItemId()) {
+    	case R.id.ResultMenuItem_Edit:
+    		editResult(info.position);
+    		return true;
+    	default:
+    		return super.onContextItemSelected(item);
+    	}
+    }
+    
+    private void editResult(int position) {
+    	resultToEdit = (HandResult)
+		((ListView)this.findViewById(R.id.HistoryListView)).getItemAtPosition(position);
+    	this.findViewById(R.id.EditCancelButton).setVisibility(View.VISIBLE);
+    	loadResultToEdit(resultToEdit);
     }
     
     @Override
@@ -248,21 +309,37 @@ public class GameScreen extends Activity {
     	}
     }
 
-    
-    private void updateHistoryList(HandResult newResult)
-    {
-    	if(null != newResult)
-    	{
-    		currentGame.addHandResult(newResult);
+    private void loadResultToEdit(HandResult result) {
+    	contractPlayer.setSelectedValue(result.player);
+    	contractSuit.setSelectedValue(result.suit);
+    	contractLevel.setSelectedValue(result.level);
+    	contractMultiplier.setSelectedValue(result.multiplier);
+    	hcp.setValue(result.hcp);
+    	
+    	int trickDiff = result.tricksMade - (result.level+6);
+    	if(Math.abs(trickDiff) <= 2) {
+    		tricksMadeQuick.setSelectedValue(trickDiff);
+    		tricksTaken.reset();
+    	} else {
+    		tricksMadeQuick.reset();
+    		tricksTaken.setValue(result.tricksMade);
     	}
-        ListView handListView = (ListView)this.findViewById(R.id.HistoryListView);
-        handListView.setAdapter(new ArrayAdapter<HandResult>(this, R.layout.result_list_item, currentGame.getHandResults()));
+    	
+    	final View contractView = this.findViewById(R.id.ContractLayout);
+        final View pointsView = this.findViewById(R.id.PointsLayout);
+        final View resultView = this.findViewById(R.id.ResultLayout);
+        
+		contractView.setVisibility(View.VISIBLE);
+		pointsView.setVisibility(View.GONE);			
+		resultView.setVisibility(View.GONE);
     }
     
     private void updateHistoryList()
     {
-    	updateHistoryList(null);
+        ListView handListView = (ListView)this.findViewById(R.id.HistoryListView);
+        handListView.setAdapter(new ArrayAdapter<HandResult>(this, R.layout.result_list_item, currentGame.getHandResults()));
     }
+
     
     private void setupToggleGroups()
     {

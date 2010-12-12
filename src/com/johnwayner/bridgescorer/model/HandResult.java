@@ -23,7 +23,16 @@ public class HandResult {
 		{
 			return simpleName;
 		}
-		
+
+		public static PLAYER getDealerForHand(int handNumber) {
+			switch(handNumber%4) {
+			case 0: return NORTH;
+			case 1: return EAST;
+			case 2: return SOUTH;
+			default: return WEST;
+			}
+		}
+
 		public PLAYER getNextDealer()
 		{
 			switch(this)
