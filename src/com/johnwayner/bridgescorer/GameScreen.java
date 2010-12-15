@@ -87,7 +87,7 @@ public class GameScreen extends Activity {
         final Window thisWindow = this.getWindow();        
         final View contractView = this.findViewById(R.id.ContractLayout);
         final View pointsView = this.findViewById(R.id.PointsLayout);
-        final View resultView = this.findViewById(R.id.ResultLayout);
+        final View resultView = this.findViewById(R.id.ResultLayout);        
         
         OnClickListener showPointsViewListener = new OnClickListener() {
 			
@@ -210,7 +210,13 @@ public class GameScreen extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
-				editResult(position);
+				if(contractView.getVisibility() == View.VISIBLE) {
+					editResult(position);
+				} else {
+					Toast.makeText(GameScreen.this, 
+							"Can't edit history while creating new contract (hit back).", 
+							Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 

@@ -28,7 +28,7 @@
 
 	<FrameLayout android:layout_below="@+id/NSTotal"
 		android:layout_height="wrap_content" android:id="@+id/ScoringFrame"
-		android:layout_width="480px" android:layout_centerHorizontal="true">
+		android:layout_width="480px" android:layout_centerHorizontal="true" android:layout_marginBottom="25px">
 		<include android:id="@+id/ContractLayout" layout="@layout/contract" />
 		<include android:id="@+id/PointsLayout" layout="@layout/points"
 			android:visibility="gone" />
