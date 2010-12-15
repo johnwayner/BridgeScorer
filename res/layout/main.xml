@@ -47,19 +47,16 @@
 		android:layout_height="wrap_content" android:id="@+id/HistoryListView"></ListView>
 	<RelativeLayout android:layout_height="wrap_content"
 		android:layout_width="wrap_content" android:id="@+id/EWTotal"
-		android:layout_alignParentRight="true" android:layout_toRightOf="@id/HandCountLabel">
+		android:layout_alignParentRight="true" android:layout_toRightOf="@id/HandCountLabel" android:layout_alignBottom="@id/NSTotal" android:layout_alignParentTop="true">
+		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:id="@+id/EWScore" android:layout_centerHorizontal="true"
+			android:textSize="24px" android:text="0" android:layout_centerVertical="true"></TextView>
 		<TextView android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:id="@+id/East"
-			android:text="East" android:layout_alignParentTop="true"
-			android:layout_centerHorizontal="true"></TextView>
-		<TextView android:layout_below="@id/East"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:id="@+id/EWScore" android:layout_centerHorizontal="true"
-			android:textSize="24px" android:text="0"></TextView>
-		<TextView android:layout_below="@id/EWScore"
-			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text="East" android:layout_toRightOf="@id/EWScore" android:layout_centerVertical="true" android:layout_marginLeft="25px"></TextView>		
+		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:id="@+id/West" android:text="West"
-			android:layout_centerHorizontal="true"></TextView>
+			android:layout_toLeftOf="@id/EWScore" android:layout_centerVertical="true" android:layout_marginRight="25px"></TextView>
 	</RelativeLayout>
 
 

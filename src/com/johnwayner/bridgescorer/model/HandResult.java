@@ -26,10 +26,10 @@ public class HandResult {
 
 		public static PLAYER getDealerForHand(int handNumber) {
 			switch((handNumber-1)%4) {
-			case 0: return NORTH;
-			case 1: return EAST;
-			case 2: return SOUTH;
-			default: return WEST;
+			case 0: return SOUTH;
+			case 1: return WEST;
+			case 2: return NORTH;
+			default: return EAST;
 			}
 		}
 
