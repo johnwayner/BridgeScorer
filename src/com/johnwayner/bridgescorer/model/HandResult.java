@@ -264,7 +264,7 @@ public class HandResult {
 					}
 				}
 			} else {
-				score -= 50 * tricksUnder * multiplier;
+				score -= (vulnerability==VULNERABILITY.VULNERABLE?100:50) * tricksUnder * multiplier;
 			}
 		}
 		
