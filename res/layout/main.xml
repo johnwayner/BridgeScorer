@@ -15,7 +15,7 @@
 		<TextView android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:id="@+id/North"
 			android:text="North" android:layout_alignParentTop="true"
-			android:layout_centerHorizontal="true" android:background="#F00"></TextView>
+			android:layout_centerHorizontal="true" android:background="#F00" android:textSize="10sp"></TextView>
 		<TextView android:layout_below="@id/North"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:id="@+id/NSScore" android:layout_centerHorizontal="true"
@@ -23,7 +23,7 @@
 		<TextView android:layout_below="@id/NSScore"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:id="@+id/South" android:text="South"
-			android:layout_centerHorizontal="true"></TextView>
+			android:layout_centerHorizontal="true" android:textSize="10sp"></TextView>
 	</RelativeLayout>
 
 	<FrameLayout android:layout_below="@+id/NSTotal"
@@ -50,13 +50,13 @@
 		android:layout_alignParentRight="true" android:layout_toRightOf="@id/HandCountLabel" android:layout_alignBottom="@id/NSTotal" android:layout_alignParentTop="true">
 		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:id="@+id/EWScore" android:layout_centerHorizontal="true"
-			android:textSize="24px" android:text="0" android:layout_centerVertical="true"></TextView>
+			android:textSize="24px" android:layout_centerVertical="true" android:text="12"></TextView>
 		<TextView android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:id="@+id/East"
-			android:text="East" android:layout_toRightOf="@id/EWScore" android:layout_centerVertical="true" android:layout_marginLeft="25px"></TextView>		
+			android:text="East" android:layout_toRightOf="@id/EWScore" android:layout_centerVertical="true" android:layout_marginLeft="25px" android:textSize="10sp"></TextView>		
 		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:id="@+id/West" android:text="West"
-			android:layout_toLeftOf="@id/EWScore" android:layout_centerVertical="true" android:layout_marginRight="25px"></TextView>
+			android:layout_toLeftOf="@id/EWScore" android:layout_centerVertical="true" android:layout_marginRight="25px" android:textSize="10sp"></TextView>
 	</RelativeLayout>
 
 

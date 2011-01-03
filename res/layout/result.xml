@@ -3,13 +3,22 @@
 	android:layout_width="wrap_content" android:layout_height="wrap_content">
 	<TextView android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:layout_alignParentLeft="true"
-		android:layout_alignParentTop="true" android:id="@+id/ContractLabel"
-		android:text="W 2HXX" android:textSize="24px"></TextView>
+		android:layout_alignParentTop="true" android:id="@+id/ContractPlayerLabel"
+		android:text="W" android:textSize="24px"></TextView>
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_alignParentTop="true" android:id="@+id/ContractLevelLabel"
+		android:text="2" android:textSize="24px" android:layout_toRightOf="@id/ContractPlayerLabel" android:layout_marginLeft="5dp"></TextView>
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_alignParentTop="true" android:id="@+id/ContractSuitLabel"
+		android:text="H" android:textSize="24px" android:layout_toRightOf="@id/ContractLevelLabel"></TextView>		
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_alignParentTop="true" android:id="@+id/ContractMultiplierLabel"
+		android:text="XX" android:textSize="24px" android:layout_toRightOf="@id/ContractSuitLabel"></TextView>
 	<ToggleButton android:layout_width="wrap_content"
 		android:text="@+id/ToggleButton01" android:layout_height="wrap_content"
 		android:id="@+id/Minus2Toggle" android:textOff="-2" android:textOn="-2"
 		android:layout_toRightOf="@+id/Minus3Toggle"
-		android:layout_alignParentLeft="true" android:layout_below="@+id/ContractLabel"></ToggleButton>
+		android:layout_alignParentLeft="true" android:layout_below="@+id/ContractPlayerLabel"></ToggleButton>
 
 
 
@@ -17,12 +26,12 @@
 	<ToggleButton android:layout_toRightOf="@+id/Minus2Toggle"
 		android:layout_width="wrap_content" android:text="@+id/ToggleButton01"
 		android:layout_height="wrap_content" android:id="@+id/Minus1Toggle"
-		android:textOff="-1" android:textOn="-1" android:layout_below="@+id/ContractLabel"></ToggleButton>
+		android:textOff="-1" android:textOn="-1" android:layout_alignTop="@id/Minus2Toggle"></ToggleButton>
 	<ToggleButton android:layout_toRightOf="@+id/Minus1Toggle"
 		android:layout_width="wrap_content" android:text="@+id/ToggleButton01"
 		android:layout_height="wrap_content" android:textOff="+0"
 		android:textOn="+0" android:id="@+id/Plus0Toggle"
-		android:layout_below="@+id/ContractLabel"></ToggleButton>
+		android:layout_alignTop="@id/Minus2Toggle"></ToggleButton>
 	<TextView android:layout_toRightOf="@+id/Minus1Toggle"
 		android:layout_below="@+id/Plus0Toggle" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:text="- OR -"
@@ -37,12 +46,12 @@
 	<ToggleButton android:layout_toRightOf="@+id/Plus0Toggle"
 		android:layout_width="wrap_content" android:text="@+id/ToggleButton01"
 		android:layout_height="wrap_content" android:id="@+id/Plus1Toggle"
-		android:textOff="+1" android:textOn="+1" android:layout_below="@+id/ContractLabel"></ToggleButton>
+		android:textOff="+1" android:textOn="+1" android:layout_alignTop="@id/Minus2Toggle"></ToggleButton>
 	<ToggleButton android:layout_toRightOf="@+id/Plus1Toggle"
 		android:layout_width="wrap_content" android:text="@+id/ToggleButton01"
 		android:layout_height="wrap_content" android:textOff="+2"
 		android:textOn="+2" android:id="@+id/Plus2Toggle"
-		android:layout_below="@+id/ContractLabel"></ToggleButton>
+		android:layout_alignTop="@id/Minus2Toggle"></ToggleButton>
 
 <Button android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:id="@+id/ResultBackButton"

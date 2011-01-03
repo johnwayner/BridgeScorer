@@ -5,7 +5,7 @@ import org.simpleframework.xml.Element;
 import com.johnwayner.bridgescorer.IMPTables;
 import com.johnwayner.bridgescorer.IMPTables.VULNERABILITY;
 
-public class HandResult {
+public class HandResult implements Comparable<HandResult> {
 	public enum PLAYER {
 		NORTH("N"),
 		EAST("E"),
@@ -274,5 +274,10 @@ public class HandResult {
 	public int getIMPScore()
 	{
 		return IMPTables.getIMPScore(getScore(), IMPTables.getTargetScore(hcp, vulnerability));
+	}
+
+	@Override
+	public int compareTo(HandResult another) {
+		return (new Integer(another.handNumber)).compareTo(this.handNumber);
 	}
 }

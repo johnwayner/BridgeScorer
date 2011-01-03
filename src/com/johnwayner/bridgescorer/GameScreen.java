@@ -1,5 +1,7 @@
 package com.johnwayner.bridgescorer;
 
+import java.util.Collections;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -137,10 +139,27 @@ public class GameScreen extends Activity {
 				
 				int multiplier = contractMultiplier.getSelectedValue();
 				
-				((TextView)resultView.findViewById(R.id.ContractLabel)).setText(
-						contractPlayer.getSelectedValue().getSimpleName() + " " +
-						contractLevel.getSelectedValue() +
-						contractSuit.getSelectedValue().getSimpleName() +
+				((TextView)resultView.findViewById(R.id.ContractPlayerLabel)).setText(
+						contractPlayer.getSelectedValue().getSimpleName());
+				((TextView)resultView.findViewById(R.id.ContractLevelLabel)).setText(
+						contractLevel.getSelectedValue().toString());
+				TextView suitLabel = (TextView)resultView.findViewById(R.id.ContractSuitLabel);
+				suitLabel.setText(contractSuit.getSelectedValue().getSimpleName());
+				switch(contractSuit.getSelectedValue()) {
+				case HEARTS:
+				case DIAMONDS:
+					suitLabel.setTextColor(0xFFFF0000);
+					break;
+				case CLUBS:
+				case SPADES:
+					suitLabel.setTextColor(0xFF000000);
+					break;
+				case NOTRUMP:
+					suitLabel.setTextColor(0xFF008800);
+					break;
+				}
+				
+				((TextView)resultView.findViewById(R.id.ContractMultiplierLabel)).setText(
 						(multiplier==2?"X ":(multiplier==4?"XX":"")));
 						
 				
@@ -383,6 +402,7 @@ public class GameScreen extends Activity {
     private void updateHistoryList()
     {
         ListView handListView = (ListView)this.findViewById(R.id.HistoryListView);
+        Collections.sort(currentGame.getHandResults());
         handListView.setAdapter(new ArrayAdapter<HandResult>(this, R.layout.result_list_item, currentGame.getHandResults()));
     }
 

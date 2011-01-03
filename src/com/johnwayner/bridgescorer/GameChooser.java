@@ -1,6 +1,8 @@
 package com.johnwayner.bridgescorer;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -18,6 +20,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 
+import com.johnwayner.bridgescorer.model.Game;
 import com.johnwayner.bridgescorer.utils.GameManager;
 
 public class GameChooser extends ListActivity {
@@ -30,11 +33,13 @@ public class GameChooser extends ListActivity {
 
 	@Override
 	protected void onResume() {
-		super.onRestart();
+		super.onResume();
+		
+		List<Date> games = GameManager.getGameDates(this);
+		Collections.sort(games, Collections.reverseOrder());		
 
 		setListAdapter(new ArrayAdapter<Date>(this,
-				android.R.layout.simple_list_item_1, GameManager
-						.getGameDates(this)));
+				android.R.layout.simple_list_item_1, games));
 	}
 
 	@Override
