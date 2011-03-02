@@ -81,14 +81,14 @@ public class Game {
 		PLAYER dealer = PLAYER.getDealerForHand(handNumber);
 		
 		switch(dealer) {
-		case NORTH:
-			return VULNERABILITY.NOT_VULNERABLE;
-		case EAST:
 		case SOUTH:
+			return VULNERABILITY.NOT_VULNERABLE;
+		case WEST:
+		case NORTH:
 			return biddingPlayer.isSamePartnership(dealer)?
 					VULNERABILITY.VULNERABLE:
 					VULNERABILITY.NOT_VULNERABLE;
-		case WEST:
+		case EAST:
 			return VULNERABILITY.VULNERABLE;
 		}
 		

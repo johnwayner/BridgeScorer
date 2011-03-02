@@ -161,6 +161,12 @@ public class GameScreen extends Activity {
 				
 				((TextView)resultView.findViewById(R.id.ContractMultiplierLabel)).setText(
 						(multiplier==2?"X ":(multiplier==4?"XX":"")));
+				
+				((TextView)resultView.findViewById(R.id.ContractVulnLabel)).setText(
+						(currentGame.getVulnerability(contractPlayer.getSelectedValue())
+							== VULNERABILITY.VULNERABLE)?
+									"Vulnerable":
+									"Not Vulnerable");
 						
 				
 				contractView.setVisibility(View.GONE);

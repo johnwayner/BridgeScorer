@@ -14,6 +14,7 @@
 	<TextView android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:layout_alignParentTop="true" android:id="@+id/ContractMultiplierLabel"
 		android:text="XX" android:textSize="24px" android:layout_toRightOf="@id/ContractSuitLabel"></TextView>
+	<TextView android:layout_toRightOf="@+id/ContractMultiplierLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignTop="@+id/ContractMultiplierLabel" android:layout_alignBottom="@+id/ContractMultiplierLabel" android:layout_marginLeft="30sp" android:id="@+id/ContractVulnLabel" android:text="Vulnerable" android:layout_alignBaseline="@+id/ContractMultiplierLabel" android:textSize="24px"></TextView>
 	<ToggleButton android:layout_width="wrap_content"
 		android:text="@+id/ToggleButton01" android:layout_height="wrap_content"
 		android:id="@+id/Minus2Toggle" android:textOff="-2" android:textOn="-2"
