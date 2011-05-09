@@ -75,7 +75,9 @@ public class Game {
 		throw new IllegalArgumentException("No such hand found.");
 	}
 	public void removeLastResult() {
-		handResults.remove(handResults.size()-1);
+		if(handResults.size() > 0) {
+			handResults.remove(handResults.size()-1);
+		}
 	}
 	public static VULNERABILITY getVulnerability(int handNumber, PLAYER biddingPlayer) {
 		PLAYER dealer = PLAYER.getDealerForHand(handNumber);
