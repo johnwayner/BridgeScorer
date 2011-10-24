@@ -10,17 +10,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 
-import com.johnwayner.bridgescorer.model.Game;
 import com.johnwayner.bridgescorer.utils.GameManager;
 
 public class GameChooser extends ListActivity {
@@ -34,12 +33,17 @@ public class GameChooser extends ListActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		
-		List<Date> games = GameManager.getGameDates(this);
-		Collections.sort(games, Collections.reverseOrder());		
 
-		setListAdapter(new ArrayAdapter<Date>(this,
-				android.R.layout.simple_list_item_1, games));
+		List<Date> games = GameManager.getGameDates(this);
+
+		if(games.size() == 0) {
+			startActivity(new Intent(getApplicationContext(), GameScreen.class));
+		} else {
+			Collections.sort(games, Collections.reverseOrder());
+
+			setListAdapter(new ArrayAdapter<Date>(this,
+					android.R.layout.simple_list_item_1, games));
+		}
 	}
 
 	@Override
@@ -100,13 +104,15 @@ public class GameChooser extends ListActivity {
 			builder.setMessage("Are you sure you want to delete this file?")
 			       .setCancelable(false)
 			       .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-			           public void onClick(DialogInterface dialog, int id) {
+			           @Override
+					public void onClick(DialogInterface dialog, int id) {
 			                GameManager.deleteGame(GameChooser.this, getDateAtPosition(info.position));
 			                GameChooser.this.onResume();
 			           }
 			       })
 			       .setNegativeButton("No", new DialogInterface.OnClickListener() {
-			           public void onClick(DialogInterface dialog, int id) {
+			           @Override
+					public void onClick(DialogInterface dialog, int id) {
 			                dialog.cancel();
 			           }
 			       });
