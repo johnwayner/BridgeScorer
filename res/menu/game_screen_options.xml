@@ -4,4 +4,5 @@
 <item android:id="@+id/GameScreenMenuItem_RemoveLastHand" android:title="Remove Last Hand" android:titleCondensed="Remove Last Hand"></item>
 
 <item android:id="@+id/GameScreenMenuItem_NewGame" android:title="Start New Game" android:titleCondensed="Start New Game"></item>
+<item android:id="@+id/GameScreenMenuItem_SkipThisHand" android:title="Skip This Hand" android:titleCondensed="Skip Hand"></item>
 </menu>

@@ -274,6 +274,7 @@ public class GameScreen extends Activity {
         hcp = new EditNumberText((EditText)this.findViewById(R.id.PartnershipPointsEditText), "Points", 0, 40);
         tricksTaken = new EditNumberText((EditText)this.findViewById(R.id.TricksTakenEditText), "Tricks taken", 0, 13);
 
+        initializeUIElements();
         updateHistoryList();
     }
 
@@ -312,6 +313,27 @@ public class GameScreen extends Activity {
     		initializeUIElements();
     		Toast.makeText(GameScreen.this, "Previous game saved.  New game loaded.", Toast.LENGTH_LONG).show();
     		return true;
+    	case R.id.GameScreenMenuItem_SkipThisHand:
+    		HandResult result = new HandResult(
+					PLAYER.SOUTH,
+					SUIT.CLUBS,
+					0,
+					1,
+					currentGame.getVulnerability(PLAYER.SOUTH),
+					20,
+					0,
+					currentGame.getHandNumber(),
+					true);
+
+			currentGame.addHandResult(result);
+			updateHistoryList();
+			initializeUIElements();
+			try {
+				GameManager.saveGame(GameScreen.this, currentGame);
+			} catch (Exception e) {
+				Toast.makeText(GameScreen.this, e.toString(), Toast.LENGTH_LONG).show();
+			}
+    		return true;
     	default:
     		return super.onOptionsItemSelected(item);
     	}
@@ -349,7 +371,6 @@ public class GameScreen extends Activity {
     @Override
     protected void onResume() {
     	super.onRestart();
-    	initializeUIElements();
     }
 
     private void initializeUIElements() {
