@@ -17,7 +17,7 @@ public class Game {
 	private Date startDate = new Date();
 	@ElementList
 	private List<HandResult> handResults = new ArrayList<HandResult>();
-	
+
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -26,11 +26,11 @@ public class Game {
 		for(HandResult result : handResults) {
 			int impScore = result.getIMPScore();
 			if(((result.player.isSamePartnership(PLAYER.NORTH)) &&
-			   (impScore > 0)) 
+			   (impScore > 0))
 				||
 			   ((result.player.isSamePartnership(PLAYER.EAST)) &&
 			   (impScore < 0))) {
-				
+
 				score += Math.abs(impScore);
 			}
 		}
@@ -41,11 +41,11 @@ public class Game {
 		for(HandResult result : handResults) {
 			int impScore = result.getIMPScore();
 			if(((result.player.isSamePartnership(PLAYER.EAST)) &&
-			   (impScore > 0)) 
+			   (impScore > 0))
 				||
 			   ((result.player.isSamePartnership(PLAYER.NORTH)) &&
 			   (impScore < 0))) {
-				
+
 				score += Math.abs(impScore);
 			}
 		}
@@ -76,12 +76,12 @@ public class Game {
 	}
 	public void removeLastResult() {
 		if(handResults.size() > 0) {
-			handResults.remove(handResults.size()-1);
+			handResults.remove(0);
 		}
 	}
 	public static VULNERABILITY getVulnerability(int handNumber, PLAYER biddingPlayer) {
 		PLAYER dealer = PLAYER.getDealerForHand(handNumber);
-		
+
 		switch(dealer) {
 		case SOUTH:
 			return VULNERABILITY.NOT_VULNERABLE;
@@ -93,7 +93,7 @@ public class Game {
 		case EAST:
 			return VULNERABILITY.VULNERABLE;
 		}
-		
+
 		throw new IllegalArgumentException("Unknown player position");
 	}
 	public VULNERABILITY getVulnerability(PLAYER biddingPlayer) {
@@ -101,5 +101,5 @@ public class Game {
 	}
 	public Game() {
 	}
-	
+
 }
