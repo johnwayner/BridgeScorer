@@ -1,21 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content" android:id="@+id/ContractLayout">
-  
-  <View android:id="@+id/helper" android:layout_alignParentTop="true" android:layout_width="0dp" android:layout_height="0dp" android:layout_centerHorizontal="true"></View>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:id="@+id/ContractLayout">
 
-<ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/NorthToggle" android:layout_alignParentTop="true" android:layout_alignParentLeft="true" android:textColor="#00F" android:textOff="North" android:textOn="NORTH"></ToggleButton>
-<ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/EastToggle" android:layout_toRightOf="@id/NorthToggle" android:textColor="#00F" android:textOff="East" android:textOn="EAST"></ToggleButton>
-<ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/SouthToggle" android:layout_toRightOf="@id/EastToggle" android:textColor="#00F" android:textOff="South" android:textOn="SOUTH"></ToggleButton>
-<ToggleButton android:layout_height="wrap_content" android:id="@+id/WestToggle" android:layout_width="wrap_content" android:layout_toRightOf="@id/SouthToggle" android:textColor="#00F" android:textOff="West" android:textOn="WEST"></ToggleButton>
+	<View android:id="@+id/helper" android:layout_alignParentTop="true"
+		android:layout_width="0dp" android:layout_height="0dp"
+		android:layout_centerHorizontal="true"></View>
 
-<ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="&#x2663;" android:id="@+id/ClubsToggle" android:layout_below="@id/NorthToggle" android:layout_marginBottom="20px" android:layout_marginTop="20px" android:textOff="&#x2663;"></ToggleButton>
-<ToggleButton android:layout_below="@+id/ClubsToggle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@+id/ToggleButton01" android:id="@+id/Level1Toggle" android:textOff="1" android:textOn="1" android:textColor="#00F"></ToggleButton><ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@+id/ToggleButton06" android:id="@+id/Level4Toggle" android:layout_below="@+id/Level1Toggle" android:textOff="4" android:textOn="4" android:textColor="#00F"></ToggleButton><ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@+id/ToggleButton07" android:layout_below="@+id/Level1Toggle" android:layout_toRightOf="@+id/Level4Toggle" android:id="@+id/Level5Toggle" android:textOn="5" android:textOff="5" android:textColor="#00F"></ToggleButton><ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@+id/ToggleButton08" android:id="@+id/Level6Toggle" android:layout_toRightOf="@+id/Level5Toggle" android:layout_below="@+id/Level1Toggle" android:textOff="6" android:textOn="6" android:textColor="#00F"></ToggleButton><ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@+id/ToggleButton09" android:layout_below="@+id/Level1Toggle" android:layout_toRightOf="@+id/Level6Toggle" android:id="@+id/Level7Toggle" android:textOn="7" android:textOff="7" android:textColor="#00F"></ToggleButton><Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/ContractOKButton" android:text="OK" android:layout_below="@+id/Level1Toggle" android:layout_alignParentRight="true"></Button><ToggleButton android:layout_below="@+id/ClubsToggle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@+id/ToggleButton02" android:layout_toRightOf="@+id/Level1Toggle" android:id="@+id/Level2Toggle" android:textOff="2" android:textOn="2" android:textColor="#00F"></ToggleButton><ToggleButton android:layout_below="@+id/ClubsToggle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@+id/ToggleButton03" android:id="@+id/Level3Toggle" android:layout_toRightOf="@+id/Level2Toggle" android:textOn="3" android:textOff="3" android:textColor="#00F"></ToggleButton><ToggleButton android:layout_below="@+id/ClubsToggle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@+id/ToggleButton04" android:layout_toRightOf="@+id/Level3Toggle" android:id="@+id/DoubleToggle" android:textOff="X" android:textOn="X" android:textColor="#F00"></ToggleButton><ToggleButton android:layout_below="@+id/ClubsToggle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@+id/ToggleButton05" android:layout_toRightOf="@+id/DoubleToggle" android:id="@+id/RedoubleToggle" android:textOn="XX" android:textOff="XX" android:textColor="#F00"></ToggleButton><ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="&#x2666;" android:textOff="&#x2666;" android:id="@+id/DiamondsToggle" android:layout_toRightOf="@id/ClubsToggle" android:layout_below="@id/NorthToggle" android:textColor="#F00" android:layout_alignTop="@id/ClubsToggle"></ToggleButton>
-<ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOff="&#x2665;" android:textOn="&#x2665;" android:id="@+id/HeartsToggle" android:layout_below="@id/NorthToggle" android:layout_toRightOf="@id/DiamondsToggle" android:textColor="#F00" android:layout_alignTop="@id/ClubsToggle"></ToggleButton>
-<ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOn="&#x2660;" android:textOff="&#x2660;" android:id="@+id/SpadesToggle" android:layout_toRightOf="@id/HeartsToggle" android:layout_below="@id/NorthToggle" android:layout_alignTop="@id/ClubsToggle"></ToggleButton>
-<ToggleButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textOff="NT" android:textOn="NT" android:id="@+id/NoTrumpToggle" android:layout_toRightOf="@id/SpadesToggle" android:layout_below="@id/NorthToggle" android:textColor="#080" android:layout_alignTop="@id/ClubsToggle"></ToggleButton>
+	<ToggleButton android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/NorthToggle"
+		android:layout_alignParentTop="true" android:layout_alignParentLeft="true"
+		android:textColor="#00F" android:textOff="North" android:textOn="NORTH"></ToggleButton>
+	<ToggleButton android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/EastToggle"
+		android:layout_toRightOf="@id/NorthToggle" android:textColor="#00F"
+		android:textOff="East" android:textOn="EAST"></ToggleButton>
+	<ToggleButton android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/SouthToggle"
+		android:layout_toRightOf="@id/EastToggle" android:textColor="#00F"
+		android:textOff="South" android:textOn="SOUTH"></ToggleButton>
+	<ToggleButton android:layout_height="wrap_content"
+		android:id="@+id/WestToggle" android:layout_width="wrap_content"
+		android:layout_toRightOf="@id/SouthToggle" android:textColor="#00F"
+		android:textOff="West" android:textOn="WEST"></ToggleButton>
+
+	<ToggleButton android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:textOn="&#x2663;"
+		android:id="@+id/ClubsToggle" android:layout_below="@id/NorthToggle"
+		android:layout_marginBottom="20px" android:layout_marginTop="20px"
+		android:textOff="&#x2663;"></ToggleButton>
+	<ToggleButton android:layout_below="@+id/ClubsToggle"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="@+id/ToggleButton01" android:id="@+id/Level1Toggle"
+		android:textOff="1" android:textOn="1" android:textColor="#00F"></ToggleButton>
+	<ToggleButton android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="@+id/ToggleButton06"
+		android:id="@+id/Level4Toggle" android:layout_below="@+id/Level1Toggle"
+		android:textOff="4" android:textOn="4" android:textColor="#00F"></ToggleButton>
+	<ToggleButton android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="@+id/ToggleButton07"
+		android:layout_below="@+id/Level1Toggle" android:layout_toRightOf="@+id/Level4Toggle"
+		android:id="@+id/Level5Toggle" android:textOn="5" android:textOff="5"
+		android:textColor="#00F"></ToggleButton>
+	<ToggleButton android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="@+id/ToggleButton08"
+		android:id="@+id/Level6Toggle" android:layout_toRightOf="@+id/Level5Toggle"
+		android:layout_below="@+id/Level1Toggle" android:textOff="6"
+		android:textOn="6" android:textColor="#00F"></ToggleButton>
+	<ToggleButton android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="@+id/ToggleButton09"
+		android:layout_below="@+id/Level1Toggle" android:layout_toRightOf="@+id/Level6Toggle"
+		android:id="@+id/Level7Toggle" android:textOn="7" android:textOff="7"
+		android:textColor="#00F"></ToggleButton>
+	<Button android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@+id/ContractOKButton"
+		android:text="OK" android:layout_below="@+id/Level1Toggle"
+		android:layout_alignParentRight="true"></Button>
+	<ToggleButton android:layout_below="@+id/ClubsToggle"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="@+id/ToggleButton02" android:layout_toRightOf="@+id/Level1Toggle"
+		android:id="@+id/Level2Toggle" android:textOff="2" android:textOn="2"
+		android:textColor="#00F"></ToggleButton>
+	<ToggleButton android:layout_below="@+id/ClubsToggle"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="@+id/ToggleButton03" android:id="@+id/Level3Toggle"
+		android:layout_toRightOf="@+id/Level2Toggle" android:textOn="3"
+		android:textOff="3" android:textColor="#00F"></ToggleButton>
+	<ToggleButton android:layout_below="@+id/ClubsToggle"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="@+id/ToggleButton04" android:layout_toRightOf="@+id/Level3Toggle"
+		android:id="@+id/DoubleToggle" android:textOff="X" android:textOn="X"
+		android:textColor="#F00"></ToggleButton>
+	<ToggleButton android:layout_below="@+id/ClubsToggle"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:text="@+id/ToggleButton05" android:layout_toRightOf="@+id/DoubleToggle"
+		android:id="@+id/RedoubleToggle" android:textOn="XX" android:textOff="XX"
+		android:textColor="#F00"></ToggleButton>
+	<ToggleButton android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:textOn="&#x2666;"
+		android:textOff="&#x2666;" android:id="@+id/DiamondsToggle"
+		android:layout_toRightOf="@id/ClubsToggle" android:layout_below="@id/NorthToggle"
+		android:textColor="#F00" android:layout_alignTop="@id/ClubsToggle"></ToggleButton>
+	<ToggleButton android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:textOff="&#x2665;"
+		android:textOn="&#x2665;" android:id="@+id/HeartsToggle"
+		android:layout_below="@id/NorthToggle" android:layout_toRightOf="@id/DiamondsToggle"
+		android:textColor="#F00" android:layout_alignTop="@id/ClubsToggle"></ToggleButton>
+	<ToggleButton android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:textOn="&#x2660;"
+		android:textOff="&#x2660;" android:id="@+id/SpadesToggle"
+		android:layout_toRightOf="@id/HeartsToggle" android:layout_below="@id/NorthToggle"
+		android:layout_alignTop="@id/ClubsToggle"></ToggleButton>
+	<ToggleButton android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:textOff="NT"
+		android:textOn="NT" android:id="@+id/NoTrumpToggle"
+		android:layout_toRightOf="@id/SpadesToggle" android:layout_below="@id/NorthToggle"
+		android:textColor="#080" android:layout_alignTop="@id/ClubsToggle"></ToggleButton>
+	<ToggleButton android:textColor="#F00"
+		android:layout_height="wrap_content" android:textOn="No Bid"
+		android:textOff="No Bid" android:text="No Bid" android:id="@+id/NoBidToggle"
+		android:layout_width="wrap_content"
+		android:layout_alignParentTop="true"
+		android:layout_alignParentRight="true"></ToggleButton>
 
 
 
