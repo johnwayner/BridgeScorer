@@ -4,22 +4,22 @@
 	<TextView android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:layout_alignParentLeft="true"
 		android:layout_alignParentTop="true" android:id="@+id/ContractPlayerLabel"
-		android:text="W" android:textSize="24px"></TextView>
+		android:text="W" android:textSize="24dp"/>
 	<TextView android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:layout_alignParentTop="true" android:id="@+id/ContractLevelLabel"
-		android:text="2" android:textSize="24px" android:layout_toRightOf="@id/ContractPlayerLabel" android:layout_marginLeft="5dp"></TextView>
+		android:text="2" android:textSize="24dp" android:layout_toRightOf="@id/ContractPlayerLabel" android:layout_marginLeft="5dp"/>
 	<TextView android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:layout_alignParentTop="true" android:id="@+id/ContractSuitLabel"
-		android:text="H" android:textSize="24px" android:layout_toRightOf="@id/ContractLevelLabel"></TextView>		
+		android:text="H" android:textSize="24dp" android:layout_toRightOf="@id/ContractLevelLabel"/>
 	<TextView android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:layout_alignParentTop="true" android:id="@+id/ContractMultiplierLabel"
-		android:text="XX" android:textSize="24px" android:layout_toRightOf="@id/ContractSuitLabel"></TextView>
-	<TextView android:layout_toRightOf="@+id/ContractMultiplierLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignTop="@+id/ContractMultiplierLabel" android:layout_alignBottom="@+id/ContractMultiplierLabel" android:layout_marginLeft="30sp" android:id="@+id/ContractVulnLabel" android:text="Vulnerable" android:layout_alignBaseline="@+id/ContractMultiplierLabel" android:textSize="24px"></TextView>
+		android:text="XX" android:textSize="24dp" android:layout_toRightOf="@id/ContractSuitLabel"/>
+	<TextView android:layout_toRightOf="@+id/ContractMultiplierLabel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignTop="@+id/ContractMultiplierLabel" android:layout_alignBottom="@+id/ContractMultiplierLabel" android:layout_marginLeft="30sp" android:id="@+id/ContractVulnLabel" android:text="Vulnerable" android:layout_alignBaseline="@+id/ContractMultiplierLabel" android:textSize="24dp"/>
 	<ToggleButton android:layout_width="wrap_content"
 		android:text="@+id/ToggleButton01" android:layout_height="wrap_content"
 		android:id="@+id/Minus2Toggle" android:textOff="-2" android:textOn="-2"
 		android:layout_toRightOf="@+id/Minus3Toggle"
-		android:layout_alignParentLeft="true" android:layout_below="@+id/ContractPlayerLabel"></ToggleButton>
+		android:layout_alignParentLeft="true" android:layout_below="@+id/ContractPlayerLabel"/>
 
 
 
@@ -27,42 +27,43 @@
 	<ToggleButton android:layout_toRightOf="@+id/Minus2Toggle"
 		android:layout_width="wrap_content" android:text="@+id/ToggleButton01"
 		android:layout_height="wrap_content" android:id="@+id/Minus1Toggle"
-		android:textOff="-1" android:textOn="-1" android:layout_alignTop="@id/Minus2Toggle"></ToggleButton>
+		android:textOff="-1" android:textOn="-1" android:layout_alignTop="@id/Minus2Toggle"/>
 	<ToggleButton android:layout_toRightOf="@+id/Minus1Toggle"
 		android:layout_width="wrap_content" android:text="@+id/ToggleButton01"
 		android:layout_height="wrap_content" android:textOff="+0"
 		android:textOn="+0" android:id="@+id/Plus0Toggle"
-		android:layout_alignTop="@id/Minus2Toggle"></ToggleButton>
+		android:layout_alignTop="@id/Minus2Toggle"/>
 	<TextView android:layout_toRightOf="@+id/Minus1Toggle"
 		android:layout_below="@+id/Plus0Toggle" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:text="- OR -"
-		android:layout_centerHorizontal="true" android:id="@+id/OR"></TextView>
+		android:layout_centerHorizontal="true" android:id="@+id/OR"/>
 	<TextView android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:layout_below="@+id/OR"
-		android:id="@+id/TricksTakenLabel" android:text="Tricks Taken:"></TextView>
+		android:id="@+id/TricksTakenLabel" android:text="Tricks Taken:"/>
 	<EditText android:layout_toRightOf="@+id/TricksTakenLabel"
 		android:layout_below="@+id/OR" android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:id="@+id/TricksTakenEditText"
-		android:inputType="phone"></EditText>
+		android:inputType="phone"
+            android:minWidth="50dp"/>
 	<ToggleButton android:layout_toRightOf="@+id/Plus0Toggle"
 		android:layout_width="wrap_content" android:text="@+id/ToggleButton01"
 		android:layout_height="wrap_content" android:id="@+id/Plus1Toggle"
-		android:textOff="+1" android:textOn="+1" android:layout_alignTop="@id/Minus2Toggle"></ToggleButton>
+		android:textOff="+1" android:textOn="+1" android:layout_alignTop="@id/Minus2Toggle"/>
 	<ToggleButton android:layout_toRightOf="@+id/Plus1Toggle"
 		android:layout_width="wrap_content" android:text="@+id/ToggleButton01"
 		android:layout_height="wrap_content" android:textOff="+2"
 		android:textOn="+2" android:id="@+id/Plus2Toggle"
-		android:layout_alignTop="@id/Minus2Toggle"></ToggleButton>
+		android:layout_alignTop="@id/Minus2Toggle"/>
 
 <Button android:layout_width="wrap_content"
 		android:layout_height="wrap_content" android:id="@+id/ResultBackButton"
 		android:text="Back" android:layout_toRightOf="@id/TricksTakenEditText"
-		android:layout_marginRight="40px" android:layout_alignTop="@id/TricksTakenEditText"></Button>
+		android:layout_marginRight="40dp" android:layout_alignTop="@id/TricksTakenEditText"/>
 
 	<Button android:layout_height="wrap_content" android:id="@+id/ResultOKButton"
-		android:text="OK" android:layout_width="140px"
+		android:text="OK" android:layout_width="140dp"
 		android:layout_toRightOf="@+id/ResultBackButton"
-		android:layout_alignTop="@id/TricksTakenEditText" android:layout_alignParentRight="true"></Button>
+		android:layout_alignTop="@id/TricksTakenEditText" android:layout_alignParentRight="true"/>
 	
 
 </RelativeLayout>

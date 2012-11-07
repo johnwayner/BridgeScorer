@@ -7,7 +7,7 @@
 	<TextView android:id="@+id/HandCountLabel" android:text="(1)"
 		android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
 		android:layout_width="45dp" android:layout_height="65dp"
-		android:gravity="center"></TextView>
+		android:gravity="center"/>
 
 	<RelativeLayout android:layout_height="wrap_content"
 		android:layout_width="wrap_content" android:id="@+id/NSTotal"
@@ -15,20 +15,20 @@
 		<TextView android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:id="@+id/North"
 			android:text="North" android:layout_alignParentTop="true"
-			android:layout_centerHorizontal="true" android:background="#F00" android:textSize="10sp"></TextView>
+			android:layout_centerHorizontal="true" android:background="#F00" android:textSize="10sp"/>
 		<TextView android:layout_below="@id/North"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:id="@+id/NSScore" android:layout_centerHorizontal="true"
-			android:textSize="24px" android:text="0"></TextView>
+			android:textSize="24sp" android:text="0"/>
 		<TextView android:layout_below="@id/NSScore"
 			android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:id="@+id/South" android:text="South"
-			android:layout_centerHorizontal="true" android:textSize="10sp"></TextView>
+			android:layout_centerHorizontal="true" android:textSize="10sp"/>
 	</RelativeLayout>
 
 	<FrameLayout android:layout_below="@+id/NSTotal"
 		android:layout_height="wrap_content" android:id="@+id/ScoringFrame"
-		android:layout_width="480px" android:layout_centerHorizontal="true" android:layout_marginBottom="25px">
+		android:layout_width="fill_parent" android:layout_centerHorizontal="true" android:layout_marginBottom="25dp">
 		<include android:id="@+id/ContractLayout" layout="@layout/contract" />
 		<include android:id="@+id/PointsLayout" layout="@layout/points"
 			android:visibility="gone" />
@@ -37,26 +37,26 @@
 	</FrameLayout>
 	<FrameLayout android:layout_below="@+id/ScoringFrame"
 		android:layout_height="wrap_content" android:id="@+id/EditCancelFrame"
-		android:layout_width="480px">
+		android:layout_width="fill_parent">
 		<Button android:layout_height="wrap_content" android:layout_width="wrap_content"
 				android:id="@+id/EditCancelButton" android:visibility="gone"
 				android:text="Cancel Edit" android:layout_gravity="center"/>
 	</FrameLayout>
 	<ListView android:layout_below="@+id/EditCancelFrame"
 		android:layout_width="wrap_content" android:layout_centerHorizontal="true"
-		android:layout_height="wrap_content" android:id="@+id/HistoryListView"></ListView>
+		android:layout_height="wrap_content" android:id="@+id/HistoryListView"/>
 	<RelativeLayout android:layout_height="wrap_content"
 		android:layout_width="wrap_content" android:id="@+id/EWTotal"
 		android:layout_alignParentRight="true" android:layout_toRightOf="@id/HandCountLabel" android:layout_alignBottom="@id/NSTotal" android:layout_alignParentTop="true">
 		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:id="@+id/EWScore" android:layout_centerHorizontal="true"
-			android:textSize="24px" android:layout_centerVertical="true" android:text="12"></TextView>
+			android:textSize="24dp" android:layout_centerVertical="true" android:text="12"/>
 		<TextView android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:id="@+id/East"
-			android:text="East" android:layout_toRightOf="@id/EWScore" android:layout_centerVertical="true" android:layout_marginLeft="25px" android:textSize="10sp"></TextView>		
+			android:text="East" android:layout_toRightOf="@id/EWScore" android:layout_centerVertical="true" android:layout_marginLeft="25dp" android:textSize="10sp"/>
 		<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
 			android:id="@+id/West" android:text="West"
-			android:layout_toLeftOf="@id/EWScore" android:layout_centerVertical="true" android:layout_marginRight="25px" android:textSize="10sp"></TextView>
+			android:layout_toLeftOf="@id/EWScore" android:layout_centerVertical="true" android:layout_marginRight="25dp" android:textSize="10sp"/>
 	</RelativeLayout>
 
 
