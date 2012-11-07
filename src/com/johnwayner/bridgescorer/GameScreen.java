@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -411,10 +412,10 @@ public class GameScreen extends Activity {
     	TextView s = (TextView)this.findViewById(R.id.South);
     	TextView w = (TextView)this.findViewById(R.id.West);
 
-    	n.setBackgroundResource(android.R.color.white);
-    	e.setBackgroundResource(android.R.color.white);
-    	w.setBackgroundResource(android.R.color.white);
-    	s.setBackgroundResource(android.R.color.white);
+    	n.setBackgroundColor(Color.WHITE);
+    	e.setBackgroundColor(Color.WHITE);
+    	w.setBackgroundColor(Color.WHITE);
+    	s.setBackgroundColor(Color.WHITE);
 
     	switch(currentGame.getCurrentDealer())
     	{
