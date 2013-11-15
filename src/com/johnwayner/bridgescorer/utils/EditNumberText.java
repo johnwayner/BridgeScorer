@@ -36,6 +36,10 @@ public class EditNumberText {
 			throw n;
 		}
 	}
+
+    public boolean hasEntry() {
+        return textField.getText().length() > 0;
+    }
 	
 	public void setValue(int value) {
 		textField.setText(Integer.toString(value));

@@ -535,14 +535,12 @@ public class GameScreen extends Activity {
     	this.noBidToggle = (ToggleButton) this.findViewById(R.id.NoBidToggle);
     }
 
-    private int getTricksMade()
-    {
-    	try {
-    		return tricksTaken.getValue(false);
-    	}
-    	catch (NumberFormatException e) {
-			//look at toggle group
-    		return (6 + contractLevel.getSelectedValue()) + this.tricksMadeQuick.getSelectedValue();
-		}
+    private int getTricksMade() {
+        if (tricksTaken.hasEntry()) {
+            return tricksTaken.getValue(true);
+        } else {
+            //look at toggle group
+            return (6 + contractLevel.getSelectedValue()) + this.tricksMadeQuick.getSelectedValue();
+        }
     }
 }
