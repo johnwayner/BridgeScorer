@@ -53,7 +53,7 @@ public class IMPTables {
 			 Integer.MAX_VALUE			
 	};
 	
-	public enum VULNERABILITY {
+    public enum VULNERABILITY {
 		VULNERABLE(1),
 		NOT_VULNERABLE(0);
 		

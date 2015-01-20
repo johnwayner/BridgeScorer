@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.johnwayner.bridgescorer" android:versionName="1.04" android:versionCode="4">
+	package="com.johnwayner.bridgescorer" android:versionName="1.05" android:versionCode="5">
 	
 	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="7"/>
 	
