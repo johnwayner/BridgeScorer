@@ -1,7 +1,5 @@
 package com.johnwayner.bridgescorer;
 
-import java.util.Collections;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -9,27 +7,13 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ContextMenu;
+import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
-
 import com.johnwayner.bridgescorer.IMPTables.VULNERABILITY;
 import com.johnwayner.bridgescorer.model.Game;
 import com.johnwayner.bridgescorer.model.HandResult;
@@ -38,6 +22,8 @@ import com.johnwayner.bridgescorer.model.HandResult.SUIT;
 import com.johnwayner.bridgescorer.utils.EditNumberText;
 import com.johnwayner.bridgescorer.utils.GameManager;
 import com.johnwayner.bridgescorer.utils.ToggleButtonGroup;
+
+import java.util.Collections;
 
 public class GameScreen extends Activity {
 
@@ -411,18 +397,32 @@ public class GameScreen extends Activity {
     	TextView e = (TextView)this.findViewById(R.id.East);
     	TextView s = (TextView)this.findViewById(R.id.South);
     	TextView w = (TextView)this.findViewById(R.id.West);
+    	TextView nsScore = (TextView)this.findViewById(R.id.NSScore);
+    	TextView ewScore = (TextView)this.findViewById(R.id.EWScore);
 
     	n.setBackgroundColor(Color.WHITE);
     	e.setBackgroundColor(Color.WHITE);
     	w.setBackgroundColor(Color.WHITE);
     	s.setBackgroundColor(Color.WHITE);
+    	nsScore.setBackgroundColor(Color.WHITE);
+    	ewScore.setBackgroundColor(Color.WHITE);
 
     	switch(currentGame.getCurrentDealer())
     	{
-    	case NORTH: n.setBackgroundColor(0xFFFF0000); break;
-    	case EAST: e.setBackgroundColor(0xFFFF0000); break;
+    	case NORTH:
+            n.setBackgroundColor(0xFFFF0000);
+            nsScore.setBackgroundColor(0x33FF0000);
+            break;
+    	case EAST:
+            e.setBackgroundColor(0xFFFF0000);
+            nsScore.setBackgroundColor(0x33FF0000);
+            ewScore.setBackgroundColor(0x33FF0000);
+            break;
     	case SOUTH: s.setBackgroundColor(0xFFFF0000); break;
-    	case WEST: w.setBackgroundColor(0xFFFF0000); break;
+    	case WEST:
+            w.setBackgroundColor(0xFFFF0000);
+            ewScore.setBackgroundColor(0x33FF0000);
+            break;
     	}
     }
 
