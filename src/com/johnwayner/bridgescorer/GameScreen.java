@@ -399,7 +399,8 @@ public class GameScreen extends Activity {
     	TextView w = (TextView)this.findViewById(R.id.West);
     	TextView nsScore = (TextView)this.findViewById(R.id.NSScore);
     	TextView ewScore = (TextView)this.findViewById(R.id.EWScore);
-
+    	TextView vulnAndDealer = (TextView)this.findViewById(R.id.VulnAndDealer);
+		
     	n.setBackgroundColor(Color.WHITE);
     	e.setBackgroundColor(Color.WHITE);
     	w.setBackgroundColor(Color.WHITE);
@@ -407,7 +408,8 @@ public class GameScreen extends Activity {
     	nsScore.setBackgroundColor(Color.WHITE);
     	ewScore.setBackgroundColor(Color.WHITE);
 
-    	switch(currentGame.getCurrentDealer())
+		PLAYER dealer = currentGame.getCurrentDealer();
+		switch(dealer)
     	{
     	case NORTH:
             n.setBackgroundColor(0xFFFF0000);
@@ -424,6 +426,8 @@ public class GameScreen extends Activity {
             ewScore.setBackgroundColor(0x33FF0000);
             break;
     	}
+
+		vulnAndDealer.setText(String.format("%s vulnerable, dealer: %s", dealer.getVulnerabilityDescription(), dealer.getSimpleName()));
     }
 
     private void loadResultToEdit(HandResult result) {

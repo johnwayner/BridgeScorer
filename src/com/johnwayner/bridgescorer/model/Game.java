@@ -1,15 +1,14 @@
 package com.johnwayner.bridgescorer.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
+import com.johnwayner.bridgescorer.IMPTables.VULNERABILITY;
+import com.johnwayner.bridgescorer.model.HandResult.PLAYER;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-import com.johnwayner.bridgescorer.IMPTables.VULNERABILITY;
-import com.johnwayner.bridgescorer.model.HandResult.PLAYER;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Root
 public class Game {

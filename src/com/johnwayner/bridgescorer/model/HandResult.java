@@ -7,16 +7,18 @@ import com.johnwayner.bridgescorer.IMPTables.VULNERABILITY;
 
 public class HandResult implements Comparable<HandResult> {
 	public enum PLAYER {
-		NORTH("N"),
-		EAST("E"),
-		SOUTH("S"),
-		WEST("W");
+		SOUTH("S", "None"),
+		WEST("W", "EW"),
+		NORTH("N", "NS"),
+		EAST("E", "All");
 
 		private final String simpleName;
+		private String vulnerabilityDescription;
 
-		PLAYER(String simpleName)
+		PLAYER(String simpleName, String vulnerabilityDescription)
 		{
 			this.simpleName = simpleName;
+			this.vulnerabilityDescription = vulnerabilityDescription;
 		}
 
 		public String getSimpleName()
@@ -52,6 +54,10 @@ public class HandResult implements Comparable<HandResult> {
 			default:
 				return (this == EAST) || (this == WEST);
 			}
+		}
+
+		public String getVulnerabilityDescription() {
+			return vulnerabilityDescription;
 		}
 	}
 

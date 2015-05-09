@@ -26,7 +26,7 @@
 			android:layout_centerHorizontal="true" android:textSize="10sp"/>
 	</RelativeLayout>
 
-	<FrameLayout android:layout_below="@+id/NSTotal"
+	<FrameLayout android:layout_below="@+id/VulnAndDealerContainer"
 		android:layout_height="wrap_content" android:id="@+id/ScoringFrame"
 		android:layout_width="fill_parent" android:layout_centerHorizontal="true" android:layout_marginBottom="25dp">
 		<include android:id="@+id/ContractLayout" layout="@layout/contract" />
@@ -58,8 +58,14 @@
 			android:id="@+id/West" android:text="West"
 			android:layout_toLeftOf="@id/EWScore" android:layout_centerVertical="true" android:layout_marginRight="25dp" android:textSize="10sp"/>
 	</RelativeLayout>
-
-
+	
+	<FrameLayout android:layout_below="@+id/NSTotal"
+				 android:layout_height="wrap_content" android:id="@+id/VulnAndDealerContainer"
+				 android:layout_width="fill_parent" android:layout_centerHorizontal="true" android:layout_marginBottom="5dp">
+		<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+				  android:id="@+id/VulnAndDealer" android:gravity="center"
+				  android:textSize="12sp" android:text="NS vulnerable, dealer S"/>
+	</FrameLayout>
 
 
 
